@@ -1,0 +1,19 @@
+.home{
+    display: flex;
+    min-height: 100vh;
+}
+.navigation{
+    width: 200px;
+    border-right: 1px solid #9C27B0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: darkmagenta;
+}
+.content{
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}

@@ -1,1 +1,2 @@
-# Frontend_lopputy-
+# Frontend_lopputyö
+Olen Home.jsx lisännyt useState hookin, jotta sain eri napit toimimaan onClickin kanssa ja viemään tiettyyn paikkaan. page on se joka käyttää home näkymää alussa ja sitten, kun painaa nappia niin se vaihtaa näkymää. setPage päivittää pagea. sen alapuolella olevat constit katsoo milloin nappia painetaan ja ne kutsuu setpagen ja vaihtaa pagen siihen. content classissa se katsoo onko page sama mikä määrittelyssä on ja jos on niin näyttää sen componentin sisällön. Home.css olen laittanut että home palkki on vain vasemmalla puolella ja siellä näkyy napit allekkain ja keskellä.

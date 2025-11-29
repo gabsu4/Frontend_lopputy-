@@ -1,23 +1,29 @@
 import { useState } from 'react'
-import Addnotes from './Addnotes.jsx'
+import AddCourse from './AddCourse.jsx'
 import Listnotes from './Listnotes.jsx'
 import Create from './Create.jsx'
 
+import './Home.css'
+
 function Home(){
     const [page, setPage] = useState('Home');
-    const AddNote = () => {setPage('AddNotes');};
+    const AddCourses = () => {setPage('AddCourse');};
     const ListNote = () => {setPage('ListNotes');};
     const CreateNote = () => {setPage('Create');};
     return (
-    <>
-    <h1>NotesApp</h1>
-    <button onClick={AddNote}>Add Notes</button>
-    <button onClick={ListNote}>List Notes</button>
-    <button onClick={CreateNote}>Create Note</button>
-    {page === 'AddNotes' && <Addnotes />}
-    {page === 'ListNotes' && <Listnotes />}
-    {page === 'Create' && <Create />}
-    </>
+        <div className= "home">
+            <div className= "navigation">
+            <h1>NotesApp</h1>
+            <button onClick={AddCourses}>Add Course</button>
+            <button onClick={CreateNote}>Create Note</button>
+            <button onClick={ListNote}>List Notes</button>
+            </div>
+            <div className="content">
+            {page === 'AddCourse' && <AddCourse />}
+            {page === 'Create' && <Create />}
+            {page === 'ListNotes' && <Listnotes />}
+            </div>
+        </div>
     );
 }
 export default Home
