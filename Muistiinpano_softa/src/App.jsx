@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Home from './Home.jsx'
 
 function App() {
@@ -8,7 +7,5 @@ function App() {
     
   </div>
   );
-  
 }
-
 export default App
