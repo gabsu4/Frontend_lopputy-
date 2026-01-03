@@ -11,7 +11,6 @@ const näytettavätMuistiinpanot = suodataId
     return (
     <div>
         <h2>Muistiinpanot</h2>
-
     <div>
         <label>Suodata kurssin mukaan: </label>
         <select value={suodataId} onChange={(e) => setSuodataId(e.target.value)}>
