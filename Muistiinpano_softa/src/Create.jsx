@@ -1,31 +1,85 @@
 import { useState, } from "react";
 import './Create.css'
-import { analyzeNote } from "./utils/analysointi";
 
-function Creating(){
+function Creating({ courses, onSaveNote }){
     const [tekstiä, setTekstiä] = useState("");
+    const [valittuKurssiId, setValittuKurssiId] = useState("");
+    const [lukittu, setLukittu] = useState(false); 
+    const [sessionMuistiinpanot, setSessionMuistiinpanot] = useState([]);
 
-    const handleClick = async () => {
-        return analyzeNote(tekstiä);
-    }
-    const handleChange = (e) => {
-        setTekstiä(e.target.value);
-    }
+    const kurssi = courses.find(c => c.id === parseInt(valittuKurssiId));
+    const kurssinNimi = kurssi ? kurssi.name : "ei valittu";
+
+    const handleSave = () => {
+        if (tekstiä.trim().length === 0 || valittuKurssiId === "") {
+            alert("Kirjoita jotain ja/tai valitse kurssi!");
+            return;
+        }
+
+    const uusiMuistiinpano = {
+            text: tekstiä,
+            courseId: valittuKurssiId,
+            courseName: kurssi.name,
+            timestamp: new Date().toLocaleString(),
+        };
+
+    onSaveNote(uusiMuistiinpano);
+    setSessionMuistiinpanot([...sessionMuistiinpanot, uusiMuistiinpano]);
+
+    setLukittu(true);
+    setTekstiä('');
+    };
 
     return (
-    <div className="create">
         <div>
-        <h1>Create a note</h1>
-        <p>Add new notes for course <br />Course:</p>
+            <h1>Create a note</h1>
+            
+            <div>
+                <label>Valitse opintojakso: </label>
+                <select 
+                    value={valittuKurssiId} 
+                    onChange={(e) => setValittuKurssiId(e.target.value)}
+                    disabled={lukittu}
+                >
+                    <option value="">-- Valitse kurssi --</option>
+                    {courses.map(({ id, name }) => (
+                        <option key={id} value={id}>
+                            {name} (ID: {id})
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <p>
+                Tee muistiinpanoja kurssille: 
+                <strong> {kurssinNimi}</strong>
+            </p>
+            
+            <div>
+                <textarea 
+                    onChange={(e) => setTekstiä(e.target.value)} 
+                    value={tekstiä} 
+                    placeholder="Kirjoita muistiinpano tähän..."
+                />
+            </div>
+            
+            <div>
+                <button onClick={handleSave}>Save</button>
+            </div>
+
+            {sessionMuistiinpanot.length > 0 && (
+                <div>
+                    <h3>Session aikana luodut:</h3>
+                    <ul>
+                        {sessionMuistiinpanot.map((m, index) => (
+                            <li key={index}>
+                                {m.text}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
-        <div className="teksti">
-            <textarea onChange={(e) => handleChange(e)} value={tekstiä} name="textinput"></textarea>
-        </div>
-        
-        <div>
-            <button onClick = {handleClick}>Save</button>
-        </div>
-    </div>
     );
 }
 export default Creating

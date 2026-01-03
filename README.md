@@ -12,5 +12,3 @@ notescontext.jsx on tilan hallinta ja se käyttää Context APIta ja hookeja. yr
 analysointi.js oli enemmän kokeilua koska en päässyt kiinni siinä. Se hyväksyy yhen argumentin note. Funktion sisällä luodaan uusi objekti r, johon kopioidaan vain tietyt tiedot id, text, course ja timestamp. return palauttaa juuri tehdyn objektin.
 
 käytin tekoälyä ymmärtämään REST APIta. Miten alan tekemään eli mikä on niinkuin oleellisin auttoi vähän hahmottamaan. Mikä ihme on context ja kannattaako minun sitä käyttää tässä. minulla tuli myös virheitä addcoursessa ja notescontext niin kysyin että mikä homma, se auttoi korjaamaan osia virheitä.
-
-Haluan uusia, koska tässä on ollut niin paljon muita kursseja/projekteja joihin on keskittyny niin tämä on vähän jäänyt taka alalle :(. 
