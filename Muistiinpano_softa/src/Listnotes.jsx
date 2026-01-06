@@ -4,9 +4,12 @@ function List({ notes, courses, onDelete }){
 
 const [suodataId, setSuodataId] = useState("");
 
-const näytettavätMuistiinpanot = suodataId 
-    ? notes.filter(note => Number(note.courseId) === Number(suodataId))
-    : notes;
+    let näytettävät;
+    if (suodataId === "") {
+        näytettävät = notes;
+    } else {
+        näytettävät = notes.filter(note => note.courseId == suodataId);
+    }
 
     return (
     <div>
@@ -15,17 +18,17 @@ const näytettavätMuistiinpanot = suodataId
         <label>Suodata kurssin mukaan: </label>
         <select value={suodataId} onChange={(e) => setSuodataId(e.target.value)}>
             <option value="">Näytä kaikki</option>
-            {courses.map(k => (
-                <option key={k.id} value={k.id}>{k.name}</option>
+            {courses.map(kurssi => (
+                <option key={kurssi.id} value={kurssi.id}>{kurssi.name}</option>
             ))}
         </select>
     </div>
 
-    {näytettavätMuistiinpanot.length === 0 ? (
+    {näytettävät.length === 0 ? (
         <p>Ei muistiinpanoja!</p>
     ) : (
         <ul>
-            {näytettavätMuistiinpanot.map((m) => (
+            {näytettävät.map((m) => (
                 <li key={m.id}>
                     <strong>{m.courseName} (ID: {m.courseId})</strong>
                     <br />
